@@ -14,6 +14,7 @@ import {
   Phone,
   Search,
   ArrowUpRight,
+  Users,
 } from "lucide-react";
 
 import { useAuth } from "@/contexts/auth-context";
