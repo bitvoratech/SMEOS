@@ -6,15 +6,25 @@ export async function requireOrgAccess(
   response: Response,
   next: NextFunction,
 ) {
-  const { organizationId } = request.params;
+  const organizationId = request.params.organizationId as string;
 
   if (!organizationId) {
-    response.status(400).json({ error: { code: "BAD_REQUEST", message: "Missing organizationId" } });
+    response.status(400).json({
+      error: {
+        code: "BAD_REQUEST",
+        message: "Missing organizationId",
+      },
+    });
     return;
   }
 
   if (!request.user?.userId) {
-    response.status(401).json({ error: { code: "UNAUTHORIZED", message: "Unauthorized" } });
+    response.status(401).json({
+      error: {
+        code: "UNAUTHORIZED",
+        message: "Unauthorized",
+      },
+    });
     return;
   }
 
@@ -26,7 +36,12 @@ export async function requireOrgAccess(
   });
 
   if (!membership) {
-    response.status(403).json({ error: { code: "FORBIDDEN", message: "You do not have access to this organization" } });
+    response.status(403).json({
+      error: {
+        code: "FORBIDDEN",
+        message: "You do not have access to this organization",
+      },
+    });
     return;
   }
 
