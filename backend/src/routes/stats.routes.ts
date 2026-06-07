@@ -7,9 +7,4 @@ import { stats } from "../controllers/stats.controller.js";
 export const statsRouter = Router({ mergeParams: true });
 
 statsRouter.use(requireAuth, asyncHandler(requireOrgAccess));
-statsRouter.get(
-  "/",
-  asyncHandler(async (request, response, next) => {
-    return stats(request, response, next);
-  })
-);
+statsRouter.get("/", asyncHandler(stats));
